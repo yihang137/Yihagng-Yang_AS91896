@@ -1,0 +1,84 @@
+Initialize the player's name
+Initialize the player's maximum health to 100, and the current health is at the maximum
+Initialize the player's base attack power to 15, and the current attack power is equal to the base attack power
+The initialization status of whether there is a silver sword, a blood bottle, and whether the blood bottle has been used is False
+Initialize whether the Boss's resurrection status is False
+The initialization stage of the game is 1
+Initialize the end status of the game to False
+
+Display the welcome message and the player's name
+
+Loop until the game ends:
+Set the monster name and health points according to the current stage
+Phase 1: Goblin, health 30
+Stage 2: Orc, health volume 30
+Phase 3: Troll, 30 health points
+Phase 4: Dragon (Boss), 50 health points, the Boss has not been revived
+
+Display the information of encountering monsters
+
+When the monster's health is greater than 0 and the player's health is greater than 0:
+Display the player's health and the monster's health
+The player selects an attack/defend/evade.
+
+If the action is attack:
+The monster's health minus the player's attack power
+Randomly determine whether to trigger mystic therapy (with a 20% probability)
+If triggered: The player recovers 20 health points and cannot exceed the maximum health
+Display attack information
+
+Otherwise, if the action is defend:
+Display the information ready for defense
+
+Otherwise if the action is evade:
+Display the attempt to dodge information
+
+Others:
+An invalid action prompt is displayed. Re-enter the action and skip this round of the loop
+
+If the monster's health is still greater than 0:
+The monster launched an attack.
+Different effects are executed according to the player's actions:
+If the player defends:
+The player recovers 5 points
+Display defense recovery information
+
+Otherwise, if the player dodges:
+Generate the result of randomly deciding to dodge:
+50% successful evasion, no damage
+If a 20% evasion fails, the player will lose 10 health points
+30% perfect dodge and attack, monsters lose 30 health
+If it is a Boss and its health drops to 0 and it has not been revived:
+The Boss has been revived and his health points have been restored to 50
+Display the Boss revival information
+
+Otherwise (player attacks or invalid actions) :
+The player kills 10 health points
+Display the information of being hit
+
+If the player's health drops to 0 or below and they have unused health potions:
+The health potion is used automatically and the player's health points are restored to 50
+Mark the blood bottle as used
+Show that the blood bottle has been used
+
+If the player's health is greater than 0 (the monster is defeated) :
+Display the information of defeating monsters
+Add 1 during the game stage
+
+If the stage is 2 and the silver sword is not possessed:
+Obtaining the Silver sword increases attack power by 10
+Display the information of the silver sword obtained
+
+If the stage is 3 and there is no blood bottle:
+Obtain the blood bottle
+Display the information of the obtained blood bottle
+
+If the stage is 5 (the Boss is defeated) :
+Display victory and return to the original world information
+The end of the game is marked as True
+
+Otherwise (the player dies) :
+Display death and reset the game information
+The player's health recovery is the greatest
+The game stage is reset to 1
+The status of the blood bottle is reset to unused
