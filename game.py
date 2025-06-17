@@ -13,6 +13,7 @@ used_health_potion = False
 boss_revived = False
 stage = 1
 game_over = False
+turn = 1
 
 print("Hello {}, your adventure begins now!".format(player_name))
 print("-" * 30)
@@ -39,10 +40,16 @@ while not game_over:
     print("You encounter a {}! (HP: {})".format(monster_name , monster_hp))
 
     while monster_hp > 0 and player_hp > 0:
+        print("{} Turn {} {}".format("-" * 15, turn, "-" * 15))
+        turn += 1 
         print("Your HP: {} / {}".format(player_hp , max_hp))
         print("{} HP: {}".format(monster_name , monster_hp))
         print("-" * 30)
-        action = input("Choose your action (attack / defend / evade): ")
+        print("Choose your action:")
+        print("  attack - Deal damage to the enemy")
+        print("  defend - Block attack, recover 5 HP")
+        print("  evade  - Try to dodge, maybe counterattack!")
+        action = input("Your action: ")
         print("-" * 30)
 
         if action == "attack":
