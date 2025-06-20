@@ -16,6 +16,23 @@ game_over = False
 turn = 1
 
 print("Hello {}, your adventure begins now!".format(player_name))
+print("Choose your difficulty: easy / normal / hard")
+difficulty = input("Enter difficulty: ")
+if difficulty == "easy":
+    monster_attack = 5
+    crit_chance = 0 
+    crit_damage = 0
+elif difficulty == "hard":
+    monster_attack = 10
+    crit_chance = 20
+    crit_damage = 20
+else:
+    difficulty = "normal"
+    monster_attack = 15
+    crit_chance = 0
+    crit_damage = 0
+
+print("You selected {} mode.".format(difficulty))
 print("-" * 30)
 
 while not game_over:
@@ -54,7 +71,7 @@ while not game_over:
 
         if action == "attack":
             monster_hp -= player_damage
-            if random.randint(1, 100) <= 20:  
+            if random.randint(1, 100) <= 10:  
                 heal_amount = 20
                 player_hp += heal_amount
                 if player_hp > max_hp:
@@ -92,8 +109,12 @@ while not game_over:
                     monster_hp = 50
                     print("The Dragon Boss refuses to fall and rises again with 50 HP!")     
             else:
-                player_hp -= 10
-                print("You got hit and lost 10 HP.")
+               if crit_chance > 0 and random.randint(1, 100) <= crit_chance:
+                   player_hp -= crit_damage
+                   print("Critical Hit! You got hit and lost {} HP!".format(crit_damage))
+               else:
+                   player_hp -= monster_attack
+                   print("You got hit and lost {} HP.".format(monster_attack))
 
         if player_hp <= 0 and has_health_potion and not used_health_potion:
             print("You fell... but the Health Potion activates!")
