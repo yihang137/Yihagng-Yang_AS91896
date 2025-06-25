@@ -5,17 +5,18 @@ print("-" * 30)
 player_name = input("Welcome to the other world! What is your name? ")
 print("-" * 30)
 
+# Initialize player stats
 max_hp = 100
 player_hp = max_hp
 player_base_damage = 15
 player_damage = player_base_damage
-has_silver_sword = False
-has_health_potion = False
-used_health_potion = False
-boss_revived = False
-stage = 1
-game_over = False
-turn = 1
+has_silver_sword = False # Has Silver Sword
+has_health_potion = False # Has Health Potion
+used_health_potion = False # Has Health Potion been used
+boss_revived = False # Whether boss has revived
+stage = 1 # Current stage
+game_over = False # Is the game over
+turn = 1 # Turn number
 
 print("Hello {}, your adventure begins now!".format(player_name))
 print("Choose your difficulty: easy / normal / hard")
