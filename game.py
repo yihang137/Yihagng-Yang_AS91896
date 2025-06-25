@@ -1,5 +1,7 @@
 import random
 print("-" * 30)
+
+# Get player name
 player_name = input("Welcome to the other world! What is your name? ")
 print("-" * 30)
 
