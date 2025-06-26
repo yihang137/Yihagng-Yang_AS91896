@@ -108,7 +108,7 @@ while not game_over:
                 chance = random.randint(1, 100)
                 if chance <= 50:
                     print("You successfully dodged the attack!")
-                elif chance <= 70:
+                elif 50 < chance <= 70:
                     player_hp -= 10
                     print("You failed to dodge and took 10 damage!")
                 else:
