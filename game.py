@@ -19,8 +19,7 @@ game_over = False # Is the game over
 turn = 1 # Turn number
 
 print("Hello {}, your adventure begins now!".format(player_name))
-print("Choose your difficulty: easy / normal / hard")
-difficulty = input("Enter difficulty: ")
+difficulty = input("Choose your difficulty: easy / normal / hard: ").lower()
 
 # Adjust settings by difficulty
 if difficulty == "easy":
