@@ -1,64 +1,19 @@
 import random
-print("-" * 30)
 
-# Get player name
-while True:
-    player_name = input("Welcome to the other world! What is your name? ").strip()
-    if player_name != "":
-        break
-    else:
-        print("Invalid name! Please enter at least one character.")
-print("-" * 30)
-
-# Initialize player stats
-max_hp = 100
-player_hp = max_hp
-player_base_damage = 15
-player_damage = player_base_damage
-has_silver_sword = False  # Has Silver Sword
-has_health_potion = False  # Has Health Potion
-used_health_potion = False  # Has Health Potion been used
-boss_revived = False  # Whether boss has revived
-stage = 1  # Current stage
-game_over = False  # Is the game over
-turn = 1  # Turn number
-
-print(f"Hello {player_name}, your adventure begins now!")
-# difficulty input with validation
-while True:
-    difficulty = input("Choose your difficulty: easy / normal / hard: ").lower()
-    if difficulty in ["easy", "normal", "hard"]:
-        break
-    else:
-        print("Invalid difficulty! Please enter easy, normal, or hard.")
+def print_line():
+    print("-" * 30)
 
 # Adjust settings by difficulty
-if difficulty == "easy":
-    monster_attack = 5
-    crit_chance = 0
-    crit_damage = 0
-elif difficulty == "hard":
-    monster_attack = 10
-    crit_chance = 20
-    crit_damage = 25
-else:  # normal
-    monster_attack = 10
-    crit_chance = 10
-    crit_damage = 15
+def difficulty_level (difficulty):
 
-print(f"You selected {difficulty} mode.")
-print("-" * 30)
-
-# Set monster name and HP
-monsters = [
-    {"name": "Goblin", "hp": 30},
-    {"name": "Orc",    "hp": 40},
-    {"name": "Troll",  "hp": 50},
-    {"name": "Dragon", "hp": 80}
-]
-
+    if difficulty == "easy":
+        return 5, 0, 0
+    elif difficulty == "hard":
+        return 10, 20, 25
+    else:  # normal
+        return 10, 10, 15
+    
 # Player actions
-
 def player_attack(monster_hp, monster_name):
     global player_hp
     monster_hp -= player_damage
@@ -111,9 +66,9 @@ def monster_turn(action, monster_hp, monster_name):
 
     print(f"{monster_name} attacks!")
 
-    if action == "defend":
+    if action == "2": # defend
         print("You blocked the attack!")
-    elif action == "evade":
+    elif action == "3": # evade
         monster_hp = player_evade(monster_hp, monster_name)
     else:
         if random.randint(1, 100) <= crit_chance:
@@ -131,6 +86,56 @@ def monster_turn(action, monster_hp, monster_name):
 
     return monster_hp
 
+#-----------------------------------------------------------------
+
+# Initialize player stats
+max_hp = 100
+player_hp = max_hp
+player_base_damage = 15
+player_damage = player_base_damage
+has_silver_sword = False  # Has Silver Sword
+has_health_potion = False  # Has Health Potion
+used_health_potion = False  # Has Health Potion been used
+boss_revived = False  # Whether boss has revived
+stage = 1  # Current stage
+game_over = False  # Is the game over
+turn = 1  # Turn number
+
+# Set monster name and HP
+monsters = [
+    {"name": "Goblin", "hp": 30},
+    {"name": "Orc",    "hp": 40},
+    {"name": "Troll",  "hp": 50},
+    {"name": "Dragon", "hp": 80}
+]
+
+#-----------------------------------------------------------------
+
+# Get player name
+while True:
+    player_name = input("Welcome to the other world! What is your name? ").strip()
+    if player_name != "":
+        break
+    else:
+        print("Invalid name! Please enter at least one character.")
+print_line()
+
+
+print(f"Hello {player_name}, your adventure begins now!")
+
+# difficulty input with validation
+while True:
+    difficulty = input("Choose your difficulty: easy / normal / hard: ").lower()
+    if difficulty in ["easy", "normal", "hard"]:
+        break
+    else:
+        print("Invalid difficulty! Please enter easy, normal, or hard.")
+    
+monster_attack, crit_chance, crit_damage = difficulty_level(difficulty)
+
+print(f"You selected {difficulty} mode.")
+print_line()
+
 # Main game loop
 
 while not game_over:
@@ -146,16 +151,19 @@ while not game_over:
         print(f"{'-'*15} Turn {turn} {'-'*15}")
         print(f"Your HP: {player_hp}/{max_hp}")
         print(f"{monster_name} HP: {monster_hp}")
-        print("-" * 30)
+        print_line()
 
-        action = input("Choose your action (attack/defend/evade): ").lower()
-        print("-" * 30)
+        action = input("Choose your action (1:attack/2:defend/3:evade): ").lower()
+        print_line()
 
-        if action == "attack":
+        if action == "1":
+            print("You choose attack")
             monster_hp = player_attack(monster_hp, monster_name)
-        elif action == "defend":
+        elif action == "2":
+            print("You choose defend")
             player_defend()
-        elif action == "evade":
+        elif action == "3":
+            print("You choose evade")
             print("You attempt to dodge the enemy's attack...")
         else:
             print("Invalid action!")
@@ -186,10 +194,10 @@ while not game_over:
             print("You found a Health Potion! It will revive you once.")
 
         if stage > len(monsters):
-            print("-" * 30)
+            print_line()
             print("You defeated the Dragon! Congratulations!")
             print(f"Welcome back, {player_name}!")
-            print("-" * 30)
+            print_line()
             game_over = True
     else:
         print("You died! Restarting from the first monster...")
