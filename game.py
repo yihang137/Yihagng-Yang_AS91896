@@ -2,7 +2,12 @@ import random
 print("-" * 30)
 
 # Get player name
-player_name = input("Welcome to the other world! What is your name? ")
+while True:
+    player_name = input("Welcome to the other world! What is your name? ").strip()
+    if player_name != "":
+        break
+    else:
+        print("Invalid name! Please enter at least one character.")
 print("-" * 30)
 
 # Initialize player stats
@@ -94,6 +99,13 @@ def player_evade(monster_hp, monster_name):
 def monster_turn(action, monster_hp, monster_name):
     global player_hp, boss_revived
 
+    # Boss resurgence
+    if monster_hp <= 0 and monster_name == "Dragon" and not boss_revived:
+        boss_revived = True
+        monster_hp = 50
+        print("The Dragon refuses to fall and rises again with 50 HP!")
+        return monster_hp
+    
     if monster_hp <= 0:  # if the monster is already dead, it can't attack
         return monster_hp
 
