@@ -1,5 +1,7 @@
 import random
 
+# the functions for the repeat code: 
+# first programming techniques(function)
 def print_line():
     print("-" * 30)
 
@@ -102,6 +104,7 @@ game_over = False  # Is the game over
 turn = 1  # Turn number
 
 # Set monster name and HP
+# Seconde advanced programming techniques(dictionary)
 monsters = [
     {"name": "Goblin", "hp": 30},
     {"name": "Orc",    "hp": 40},
@@ -116,7 +119,7 @@ while True:
     player_name = input("Welcome to the other world! What is your name? ").strip()
     if player_name != "":
         break
-    else:
+    else: # invalid inputting tip
         print("Invalid name! Please enter at least one character.")
 print_line()
 
@@ -128,7 +131,7 @@ while True:
     difficulty = input("Choose your difficulty: easy / normal / hard: ").lower()
     if difficulty in ["easy", "normal", "hard"]:
         break
-    else:
+    else: # invalid inputting tip
         print("Invalid difficulty! Please enter easy, normal, or hard.")
     
 monster_attack, crit_chance, crit_damage = difficulty_level(difficulty)
@@ -165,7 +168,7 @@ while not game_over:
         elif action == "3":
             print("You choose evade")
             print("You attempt to dodge the enemy's attack...")
-        else:
+        else: # invalid inputting tip
             print("Invalid action!")
             continue
 
